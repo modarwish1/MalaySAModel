@@ -1,0 +1,1 @@
+Synset('good.a.01'), Synset('nice.a.01'), Synset('excellent.a.01'), Synset('positive.a.01'), Synset('fortunate.a.01'), Synset('correct.a.01'), Synset('superior.a.01')

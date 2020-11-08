@@ -1,0 +1,1 @@
+Synset('bad.a.01'), Synset('nasty.a.01'), Synset('poor.a.01'), Synset('negative.a.01'), Synset('unfortunate.a.01'), Synset('wrong.a.01'), Synset('inferior.a.01')

@@ -1,0 +1,2 @@
+This code takes each positive/negative synset from the expanded seed sets, align with the Bahasa version, and print the Bahasa version to file. This way, we have all of the expanded seed sets in Malay. We print all of the synonyms (words) in side each synsets to a text file. We only use the expanded seed sets after the final (fourth) iteration from the relations expansion algorithm for this. 
+

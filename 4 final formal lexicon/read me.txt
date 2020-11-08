@@ -1,0 +1,3 @@
+This final lexicon is the combination of the output from the relations expansion and the output from the kd gloss expansion. 
+
+The pruned version is the clean version that has been manually checked and cleaned by a human annotator. This version can be used reliably for sentiment classification of full text documents. 
