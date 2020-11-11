@@ -1,4 +1,11 @@
-hardly
+### Diminishers (give a +0.5 or -0.5 strength to the modified sentiment word)
+
+pretty
+apparently
+seemingly
+moderately
+somewhat
+questionably
+slightly
 barely
-nearly
-minimally
+hardly
