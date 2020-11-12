@@ -1,4 +1,5 @@
 import nltk
+import emoji
 
 #open pos lexicon
 with open("pos_lex.txt", "r") as f:
@@ -23,6 +24,16 @@ f.close()
 #open diminishers
 with open("diminishers.txt", "r") as f:
     diminishers = f.read().split("\n")
+f.close()
+
+#open pos emojis 
+with open("pos_emojis.txt", "r", encoding = "utf-8") as f:
+    pos_emojis = f.read().split("\n")
+f.close()
+
+#open neg emojis 
+with open("neg_emojis.txt", "r", encoding = "utf-8") as f:
+    neg_emojis = f.read().split("\n")
 f.close()
 
 def tag_negations(text): #detect negation scope and tag sentiment words under scope of negation
@@ -56,6 +67,7 @@ doc = [i for i in doc if i not in stopwords]
 
 #tag negations (this will append "NEG_" to all words after a negation in the sentence until the end of sentence punctuation symbol)
 doc = tag_negations(doc)
+doc = [w for w in doc if w != "" and w != "NEG_"]
 
 print("~~~Preprocessed document~~~\n" + str(doc) + "\n")
 
@@ -67,6 +79,15 @@ print("~~~Matches with lexicon~~~")
 #compute polarity_score in an open ended range
 for i in range(len(doc)):
     term = doc[i]
+    
+    #checks to see if emojis appear in doc    
+    if term in emoji.UNICODE_EMOJI:
+        if term in pos_emojis:
+            polarity_score += 2
+            print("pos emoji detected: ", term, "[+2]")            
+        if term in neg_emojis:
+            polarity_score -= 2
+            print("neg emoji detected: ", term, "[-2]")     
     
     #checks to see if intensifier+term combo appears, and boosts score of term to +2
     if doc[i-1] in intensifiers and term in pos_lex:
@@ -110,9 +131,6 @@ for i in range(len(doc)):
             polarity_score += 1
             print("pos match (negated negative): " + str(term) + " [+1]")
 
-#  handle emoticons and emojis here
-
-        
 print("\n")
 
 if polarity_score > 5:
@@ -131,6 +149,3 @@ else:
     polarity_label = "OBJECTIVE"
 
 print("Final polarity label: " + polarity_label)
-
-
-
