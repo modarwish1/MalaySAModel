@@ -36,6 +36,7 @@ with open("neg_emojis.txt", "r", encoding = "utf-8") as f:
     neg_emojis = f.read().split("\n")
 f.close()
 
+# tag_negations function
 def tag_negations(text): #detect negation scope and tag sentiment words under scope of negation
     negation = False
     delims = "?.,!:;"
@@ -59,14 +60,14 @@ print("~~~Original document~~~\n" + doc + "\n")
 
 # preprocessing of document
 doc = doc.lower() #lower case conversion
-doc = nltk.word_tokenize(doc) #tokenization
+doc = nltk.word_tokenize(doc) #tokenization // split string into list of words
 
 #stopwords removal
 stopwords = ['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', "you're", "you've", "you'll", "you'd", 'your', 'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she', "she's", 'her', 'hers', 'herself', 'it', "it's", 'its', 'itself', 'they', 'them', 'their', 'theirs', 'themselves', 'what', 'which', 'who', 'whom', 'this', 'that', "that'll", 'these', 'those', 'am', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'having', 'do', 'does', 'did', 'doing', 'a', 'an', 'the', 'and', 'but', 'if', 'or', 'because', 'as', 'until', 'while', 'of', 'at', 'by', 'for', 'with', 'about', 'against', 'between', 'into', 'through', 'during', 'before', 'after', 'above', 'below', 'to', 'from', 'up', 'down', 'in', 'out', 'on', 'off', 'over', 'under', 'again', 'further', 'then', 'once', 'here', 'there', 'when', 'where', 'why', 'how', 'all', 'any', 'both', 'each', 'few', 'other', 'some', 'such', 'only', 'own', 'same', 'so', 'than', 's', 't', 'can', 'will', 'just', 'should', "should've", 'now', 'd', 'll', 'm', 'o', 're', 've', 'y']
 doc = [i for i in doc if i not in stopwords]
 
 #tag negations (this will append "NEG_" to all words after a negation in the sentence until the end of sentence punctuation symbol)
-doc = tag_negations(doc)
+doc = tag_negations(doc) #call function
 doc = [w for w in doc if w != "" and w != "NEG_"]
 
 print("~~~Preprocessed document~~~\n" + str(doc) + "\n")
@@ -122,12 +123,12 @@ for i in range(len(doc)):
    
     #handle negation by appending "NEG_" to any term under negation scope, and flipping its polarity 
     for posterm in pos_lex:
-        if str(term) == "NEG_"  + posterm:
+        if str(term) == "NEG_"  + posterm: #not good
             polarity_score -= 1
             print("neg match (negated positive): " + str(term) + " [-1]")
     
     for negterm in neg_lex:
-        if str(term) == "NEG_" + negterm:
+        if str(term) == "NEG_" + negterm: 
             polarity_score += 1
             print("pos match (negated negative): " + str(term) + " [+1]")
 
