@@ -47,7 +47,6 @@ doc = f1.read()
 print("~~~Original document~~~\n" + doc + "\n")
 
 # preprocessing of document
-
 doc = doc.lower() #lower case conversion
 doc = nltk.word_tokenize(doc) #tokenization
 
@@ -110,10 +109,18 @@ for i in range(len(doc)):
         if str(term) == "NEG_" + negterm:
             polarity_score += 1
             print("pos match (negated negative): " + str(term) + " [+1]")
+
+#  handle emoticons and emojis here
+
         
 print("\n")
-print("Final raw polarity score (open-ended): ", polarity_score)
-print("Normalized polarity score: ", polarity_score/len(doc))
+
+if polarity_score > 5:
+    polarity_score = 5
+if polarity_score < -5:
+    polarity_score = -5
+
+print("Final polarity score (in range +5, -5): ", polarity_score)
 
 #label doc with polarity based on matches with lexicon
 if polarity_score > 0:
