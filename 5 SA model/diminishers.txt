@@ -1,11 +1,13 @@
-### Diminishers (give a +0.5 or -0.5 strength to the modified sentiment word)
-
-pretty
-apparently
-seemingly
-moderately
-somewhat
-questionably
-slightly
-barely
 hardly
+barely
+nearly
+minimally
+hampir
+kadang-kadang
+jarang-jarang
+jarang
+kadang
+sesekali
+sekali-sekala
+mungkin
+kemungkinan
