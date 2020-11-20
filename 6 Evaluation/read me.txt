@@ -1,0 +1,34 @@
+### Functionality of the SA Model:
+
+- For any input text doc, we preprocess it by performing lowercase conversion, tokenization, negation tagging, and frequent stop words removal (but keeping important stop words that indicate negation such as 'no', 'not', etc.). 
+
+- This model takes the pos_lex.txt and neg_lex.txt. These two files can be modified to update the lexicons used by the model. For each match between the pos_lex and a term in the document, a +1 polarity_score is given, and for each match between the neg_lex and a term in the document, a -1 polarity_score is given.
+
+- Negation is handled by appending "NEG_" to any sentiment word between the negation word and the end of the sentence. For example, in "not happy", the positive term will be taken as a negated positive (NEG_happy), and labeled a -1. In "not bad", the negative term will be taken as a negated negative (NEG_bad) and labeled with a +1
+
+- Intensifiers are handled by using the intensifiers.txt file. For any combination of an intensifier followed by a pos term, the polarity_score is updated with +2. For any combo of an intensifier followed by a neg term, the polarity_score is updated with -2. 
+
+- Diminishers are handled by using the diminishers.txt file. It works in the same way as above, but giving a +0.5 and -0.5 polarity_score for any combos with pos and neg terms respectively. 
+
+- Emojis are handled using the pos_emojis.txt and neg_emojis.txt files. Any positive emoji will contribute to a +2 polarity_score, and any negative emoji will contribute to a -2 polarity_score. 
+
+- The file polarity_score can be in the range of +5 and -5 to indicate max positivity and max negativity respectively (strength). A polarity_score of > 0 takes a "POSITIVE" polarity label, and a < 0 takes a "NEGATIVE" polarity label. 
+
+
+### Some input examples
+
+I was happy with the movie.
+
+I was very happy with the movie. 
+
+I was very happy with the movie 😃
+
+I was not happy with the movie. 
+
+The movie was bad.
+
+The movie was very bad.
+
+The movie was very bad 😣
+
+The movie was not bad.
